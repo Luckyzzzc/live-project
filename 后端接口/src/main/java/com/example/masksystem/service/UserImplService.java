@@ -15,8 +15,8 @@ public class UserImplService implements UserService {
     UserMapper userMapper;
 
     @Override
-    public boolean setUser(String id, String phone, String name, Integer mask_number, Integer lottery_id) {
-        userMapper.insertUserData(id,phone,name,mask_number,lottery_id);
+    public boolean setUser(String id, String phone, String name, Integer mask_number, Integer lottery_id, String count) {
+        userMapper.insertUserData(id,phone,name,mask_number,lottery_id,count);
         return true;
     }
 
@@ -28,5 +28,10 @@ public class UserImplService implements UserService {
     @Override
     public List<User> getUserByLotteryId(Integer lottery_id) {
         return userMapper.selectByLotteryId(lottery_id);
+    }
+
+    @Override
+    public User getUserByIdAndLottery(String id, Integer lottery_id) {
+        return userMapper.selectByIdAndLottery(id, lottery_id);
     }
 }

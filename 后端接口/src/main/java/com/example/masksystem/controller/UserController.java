@@ -20,17 +20,15 @@ public class UserController {
     @RequestMapping("/addUser")
     @ResponseBody
     boolean addUser(String id, String phone, String name, Integer mask_number, Integer lottery_id){
-        if(userService.setUser(id,phone,name,mask_number,lottery_id))
+        if(userService.getUserByIdAndLottery(id, lottery_id) != null
+        || userService.getUserByIdAndLottery(id,lottery_id - 1) != null
+        || userService.getUserByIdAndLottery(id, lottery_id - 2) != null){
+            return false;
+        } else{
+            String count = null;
+            userService.setUser(id,phone,name,mask_number,lottery_id,count);
             return true;
-        return false;
-    }
-
-    List<User> getUserById(String id){
-        return userService.getUserById(id);
-    }
-
-    List<User> getUserByLottery(Integer lottery_id){
-        return userService.getUserByLotteryId(lottery_id);
+        }
     }
 
     @RequestMapping("/sum")

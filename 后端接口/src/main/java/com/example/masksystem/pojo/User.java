@@ -6,6 +6,15 @@ public class User {
     private String name;
     private Integer mask_number;
     private Integer lottery_id;
+    private String count;
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
 
     public String getId() {
         return id;
